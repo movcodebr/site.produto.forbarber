@@ -5,179 +5,557 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>ForBarber · Sistema para barbearia</title>
   <meta name="description" content="Site com agendamento online, app com o nome da barbearia e painel com agenda, clientes e financeiro. 14 dias grátis, sem cartão.">
-  <meta name="theme-color" content="#0b1120">
+  <meta name="theme-color" content="#070b15">
+  <meta name="color-scheme" content="dark">
   <meta property="og:type" content="website">
   <meta property="og:title" content="ForBarber · Seu cliente marca sozinho. Você só corta.">
   <meta property="og:description" content="Agendamento online, app da barbearia e painel da equipe. Teste grátis por 14 dias.">
   <meta property="og:image" content="assets/img/produto/agenda.webp">
   <link rel="canonical" href="/">
   <link rel="icon" type="image/svg+xml" href="assets/img/forbarber.svg">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap">
+
+  <link rel="preload" href="assets/vendor/archivo/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/site.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body class="p-body" data-page="produto">
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-  <header class="p-header">
+  <div class="p-grain" aria-hidden="true"></div>
+
+  <header class="p-header" data-header>
     <div class="container p-header-inner">
       <a class="p-brand" href="./" aria-label="ForBarber, início"><span class="p-brand-mark" aria-hidden="true"></span><span class="p-brand-name"><span>For</span>Barber</span></a>
       <nav class="p-nav" aria-label="Menu">
-        <a href="#cliente">Recursos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#experimente">Experimente</a>
         <a href="#planos">Planos</a>
         <a href="https://movcodebr.github.io/Barbearia/app/" data-app="app/">Demonstração</a>
       </nav>
       <div class="p-header-actions">
         <a class="btn btn-ghost btn-sm p-login" href="https://movcodebr.github.io/Barbearia/entrar.html" data-app="entrar.html">Entrar</a>
         <a class="btn btn-primary btn-sm" href="https://movcodebr.github.io/Barbearia/criar.html" data-app="criar.html">Testar grátis</a>
+        <button class="p-menu-btn" type="button" aria-expanded="false" aria-controls="menu-mobile" data-menu-toggle>
+          <span class="sr-only">Abrir menu</span><span class="p-menu-icon" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
+    <div class="p-progress" aria-hidden="true"><span data-progress></span></div>
+    <nav class="p-sheet" id="menu-mobile" aria-label="Menu" hidden data-menu>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#experimente">Experimente</a>
+      <a href="#planos">Planos</a>
+      <a href="#perguntas">Perguntas</a>
+      <a href="https://movcodebr.github.io/Barbearia/app/" data-app="app/">Demonstração <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+      <a href="https://movcodebr.github.io/Barbearia/entrar.html" data-app="entrar.html">Entrar <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+    </nav>
   </header>
 
   <main id="conteudo">
+    <!-- ============ HERO ============ -->
     <section class="p-hero" aria-labelledby="hero-title">
-      <div class="container p-hero-grid">
-        <div class="p-hero-copy">
-          <span class="p-url"><i class="bi bi-link-45deg" aria-hidden="true"></i><span><span data-host>forbarber.com.br</span>/<b>suabarbearia</b></span></span>
-          <h1 class="p-title p-h1" id="hero-title">Seu cliente marca sozinho. <em>Você só corta.</em></h1>
-          <p class="lead">Site com agendamento online, app com o nome da sua barbearia e painel com agenda, clientes e financeiro. Você cria em 5 minutos e coloca o link na bio.</p>
-          <div class="p-ctas">
-            <a class="btn btn-primary btn-lg" href="https://movcodebr.github.io/Barbearia/criar.html" data-app="criar.html"><i class="bi bi-scissors"></i>Criar minha barbearia</a>
-            <a class="btn btn-outline btn-lg" href="https://movcodebr.github.io/Barbearia/app/" data-app="app/">Ver a demonstração</a>
-          </div>
-          <div class="p-fine">
-            <span><i class="bi bi-check2"></i>14 dias grátis</span>
-            <span><i class="bi bi-check2"></i>Sem cartão</span>
-            <span><i class="bi bi-check2"></i>Sem fidelidade</span>
+      <div class="p-hero-sheet" aria-hidden="true" data-sheet>
+        <div class="p-hero-hours" data-hours></div>
+        <div class="p-now" data-now><span class="p-now-label">Agora · <b data-now-time>--:--</b></span></div>
+      </div>
+
+      <div class="container p-hero-inner">
+        <div class="p-hero-top" data-reveal>
+          <span class="p-kicker"><span class="p-dot" aria-hidden="true"></span>Sistema para barbearia</span>
+          <span class="p-url"><i class="bi bi-link-45deg" aria-hidden="true"></i><span><span data-host>forbarber.com.br</span>/<b data-slug>suabarbearia</b><span class="p-caret" aria-hidden="true"></span></span></span>
+        </div>
+
+        <h1 class="p-display" id="hero-title" data-stretch>
+          <span class="p-line">Seu cliente</span>
+          <span class="p-line">marca sozinho.</span>
+          <span class="p-line"><span class="p-cut" data-text="Você só corta.">Você só corta.</span></span>
+        </h1>
+
+        <div class="p-hero-row">
+          <p class="p-hero-lead" data-reveal>Site com agendamento online, app com o nome da sua barbearia e painel com agenda, clientes e financeiro. Você cria em 5 minutos e coloca o link na bio.</p>
+          <div class="p-hero-actions" data-reveal>
+            <div class="p-ctas">
+              <a class="btn btn-primary btn-lg" href="https://movcodebr.github.io/Barbearia/criar.html" data-app="criar.html" data-magnetic><i class="bi bi-scissors" aria-hidden="true"></i>Criar minha barbearia</a>
+              <a class="btn btn-outline btn-lg" href="https://movcodebr.github.io/Barbearia/app/" data-app="app/">Ver a demonstração<i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            </div>
+            <ul class="p-fine">
+              <li><i class="bi bi-check2" aria-hidden="true"></i>14 dias grátis</li>
+              <li><i class="bi bi-check2" aria-hidden="true"></i>Sem cartão</li>
+              <li><i class="bi bi-check2" aria-hidden="true"></i>Sem fidelidade</li>
+            </ul>
           </div>
         </div>
-        <div class="p-shots">
-          <div class="p-browser">
-            <div class="p-browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-            <img src="assets/img/produto/agenda.webp" alt="Agenda do dia no painel, com os horários de cada barbeiro lado a lado" width="1440" height="860" fetchpriority="high">
-          </div>
-          <div class="p-phone">
-            <img src="assets/img/produto/celular-agendar.webp" alt="Cliente escolhendo dia e horário livre pelo celular" width="780" height="1560">
+      </div>
+
+      <div class="container">
+        <div class="p-stage" data-tilt>
+          <div class="p-stage-inner">
+            <div class="p-browser">
+              <div class="p-browser-bar" aria-hidden="true"><span></span><span></span><span></span><em><i class="bi bi-lock-fill"></i>painel · agenda</em></div>
+              <img src="assets/img/produto/agenda.webp" alt="Agenda do dia no painel, com os horários de cada barbeiro lado a lado" width="1440" height="860" fetchpriority="high">
+            </div>
+            <div class="p-phone p-stage-phone">
+              <img src="assets/img/produto/celular-agendar.webp" alt="Cliente escolhendo dia e horário livre pelo celular" width="780" height="1560">
+            </div>
+            <div class="p-toasts" aria-hidden="true" data-toasts></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="p-section" id="cliente" aria-labelledby="cliente-title">
+    <!-- ============ FAIXAS ============ -->
+    <section class="p-bands" aria-label="O que vem no ForBarber">
+      <div class="p-band is-back" aria-hidden="true">
+        <div class="p-band-track" data-marquee>
+          <span>Sem fila no WhatsApp</span><i class="bi bi-scissors"></i>
+          <span>Sem caderninho</span><i class="bi bi-scissors"></i>
+          <span>Sem planilha</span><i class="bi bi-scissors"></i>
+          <span>Sem horário duplicado</span><i class="bi bi-scissors"></i>
+        </div>
+      </div>
+      <div class="p-band is-front">
+        <ul class="p-band-track" data-marquee>
+          <li>Agendamento online</li><li aria-hidden="true"><i class="bi bi-scissors"></i></li>
+          <li>App com o seu nome</li><li aria-hidden="true"><i class="bi bi-scissors"></i></li>
+          <li>Agenda da equipe</li><li aria-hidden="true"><i class="bi bi-scissors"></i></li>
+          <li>Financeiro</li><li aria-hidden="true"><i class="bi bi-scissors"></i></li>
+          <li>Comissões</li><li aria-hidden="true"><i class="bi bi-scissors"></i></li>
+          <li>Cartão fidelidade</li><li aria-hidden="true"><i class="bi bi-scissors"></i></li>
+          <li>Lembrete no WhatsApp</li><li aria-hidden="true"><i class="bi bi-scissors"></i></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ COMO FUNCIONA ============ -->
+    <section class="p-section p-how" id="como-funciona" aria-labelledby="como-title" data-how>
       <div class="container">
-        <div class="p-feature is-phone">
-          <div class="p-feature-copy">
-            <span class="eyebrow">Para o cliente</span>
-            <h2 class="p-title p-h2" id="cliente-title">Marca em menos de um minuto, a qualquer hora</h2>
-            <ul class="p-checks">
-              <li><i class="bi bi-check2-circle"></i><span><strong>Só aparece horário livre de verdade.</strong> Dois clientes nunca ficam com o mesmo horário, nem se tentarem no mesmo segundo.</span></li>
-              <li><i class="bi bi-check2-circle"></i><span><strong>Escolhe o barbeiro ou o primeiro disponível,</strong> com preço e duração somados antes de confirmar.</span></li>
-              <li><i class="bi bi-check2-circle"></i><span><strong>Remarca e cancela sozinho,</strong> dentro do prazo que você definir. Ninguém precisa te chamar no WhatsApp para isso.</span></li>
-              <li><i class="bi bi-check2-circle"></i><span><strong>Instala o app da barbearia</strong> com o seu nome e o seu logo, direto do link. Sem loja de aplicativos.</span></li>
-            </ul>
-          </div>
-          <div class="p-feature-media">
-            <div class="p-phone"><img src="assets/img/produto/celular-site.webp" alt="Site da barbearia no celular com o botão Agendar horário" width="780" height="1560" loading="lazy"></div>
-          </div>
+        <div class="p-head" data-reveal>
+          <span class="p-eyebrow"><span class="p-num">01</span>Como funciona</span>
+          <h2 class="p-h2" id="como-title">Cinco minutos para criar. <span class="p-dim">O resto, o link faz.</span></h2>
         </div>
 
-        <div class="p-feature is-reverse" id="equipe">
-          <div class="p-feature-copy">
-            <span class="eyebrow">Para a equipe</span>
-            <h3>A agenda de todo mundo, no celular de cada um</h3>
-            <ul class="p-checks">
-              <li><i class="bi bi-check2-circle"></i><span><strong>Agenda do dia por barbeiro,</strong> com encaixe, bloqueio de horário e marcação de falta.</span></li>
-              <li><i class="bi bi-check2-circle"></i><span><strong>Cada barbeiro entra com o próprio acesso</strong> e vê os próprios atendimentos e números.</span></li>
-              <li><i class="bi bi-check2-circle"></i><span><strong>Lembrete pronto no WhatsApp</strong> com um toque, já com dia, hora e serviço.</span></li>
-              <li><i class="bi bi-check2-circle"></i><span><strong>Mudou num aparelho, aparece em todos</strong> na hora. Sem atualizar a página.</span></li>
-            </ul>
-          </div>
-          <div class="p-feature-media">
-            <div class="p-browser">
-              <div class="p-browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-              <img src="assets/img/produto/agenda.webp" alt="Agenda com os atendimentos de três barbeiros e a linha do horário atual" width="1440" height="860" loading="lazy">
-            </div>
-          </div>
+        <div class="p-cutline" aria-hidden="true"><span class="p-cutline-scissors"><i class="bi bi-scissors"></i></span></div>
+
+        <ol class="p-steps">
+          <li class="p-step" data-reveal>
+            <span class="p-step-n" aria-hidden="true">01</span>
+            <h3>Crie a sua barbearia</h3>
+            <p>Cadastre o nome, o logo, os serviços, os horários e a equipe. Leva uns 5 minutos.</p>
+          </li>
+          <li class="p-step" data-reveal>
+            <span class="p-step-n" aria-hidden="true">02</span>
+            <h3>Coloque o link na bio</h3>
+            <p>Seu endereço fica <b><span data-host>forbarber.com.br</span>/sua-barbearia</b>. Cola no Instagram, no status do WhatsApp, onde o cliente te encontra.</p>
+          </li>
+          <li class="p-step" data-reveal>
+            <span class="p-step-n" aria-hidden="true">03</span>
+            <h3>O cliente marca sozinho</h3>
+            <p>Ele escolhe serviço, barbeiro e um horário livre. O atendimento cai direto na agenda da equipe.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ RECURSOS (capítulos) ============ -->
+    <section class="p-section p-chapters" id="recursos" aria-labelledby="recursos-title">
+      <div class="container">
+        <div class="p-head" data-reveal>
+          <span class="p-eyebrow"><span class="p-num">02</span>Recursos</span>
+          <h2 class="p-h2" id="recursos-title">Feito para quem marca, quem corta <span class="p-dim">e quem paga as contas.</span></h2>
         </div>
 
-        <div class="p-feature" id="dono">
-          <div class="p-feature-copy">
-            <span class="eyebrow">Para o dono</span>
-            <h3>O mês fechado sem planilha</h3>
-            <ul class="p-checks">
-              <li><i class="bi bi-check2-circle"></i><span><strong>Faturamento e ticket médio</strong> por período, comparados com o período anterior.</span></li>
-              <li><i class="bi bi-check2-circle"></i><span><strong>Comissão de cada barbeiro calculada</strong> e o líquido da casa ao lado.</span></li>
-              <li><i class="bi bi-check2-circle"></i><span><strong>Clientes sumidos há 45 dias</strong> e aniversariantes do mês, prontos para chamar.</span></li>
-              <li><i class="bi bi-check2-circle"></i><span><strong>Cartão fidelidade que se preenche sozinho:</strong> cada atendimento concluído vira um carimbo na conta do cliente.</span></li>
-            </ul>
-          </div>
-          <div class="p-feature-media">
-            <div class="p-browser">
-              <div class="p-browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-              <img src="assets/img/produto/financeiro.webp" alt="Financeiro com faturamento, ticket médio, comissões a pagar e faturamento por dia" width="1440" height="860" loading="lazy">
+        <div class="p-chapters-grid">
+          <div class="p-chapters-stage" aria-hidden="true" data-stage>
+            <div class="p-frame is-active" data-frame="0">
+              <div class="p-duo">
+                <div class="p-phone"><img src="assets/img/produto/celular-site.webp" alt="" width="780" height="1560" loading="lazy"></div>
+                <div class="p-phone"><img src="assets/img/produto/celular-agendar.webp" alt="" width="780" height="1560" loading="lazy"></div>
+              </div>
             </div>
+            <div class="p-frame" data-frame="1">
+              <div class="p-browser">
+                <div class="p-browser-bar"><span></span><span></span><span></span><em>agenda</em></div>
+                <img src="assets/img/produto/agenda.webp" alt="" width="1440" height="860" loading="lazy">
+              </div>
+            </div>
+            <div class="p-frame" data-frame="2">
+              <div class="p-browser">
+                <div class="p-browser-bar"><span></span><span></span><span></span><em>financeiro</em></div>
+                <img src="assets/img/produto/financeiro.webp" alt="" width="1440" height="860" loading="lazy">
+              </div>
+            </div>
+            <div class="p-stage-dots"><span></span><span></span><span></span></div>
+          </div>
+
+          <div class="p-chapter-list">
+            <article class="p-chapter" id="cliente" data-chapter="0">
+              <span class="p-chapter-tag"><b>01/03</b>Para o cliente</span>
+              <h3>Marca em menos de um minuto, a qualquer hora</h3>
+              <ul class="p-checks">
+                <li><span><strong>Só aparece horário livre de verdade.</strong> Dois clientes nunca ficam com o mesmo horário, nem se tentarem no mesmo segundo.</span></li>
+                <li><span><strong>Escolhe o barbeiro ou o primeiro disponível,</strong> com preço e duração somados antes de confirmar.</span></li>
+                <li><span><strong>Remarca e cancela sozinho,</strong> dentro do prazo que você definir. Ninguém precisa te chamar no WhatsApp para isso.</span></li>
+                <li><span><strong>Instala o app da barbearia</strong> com o seu nome e o seu logo, direto do link. Sem loja de aplicativos.</span></li>
+              </ul>
+              <div class="p-chapter-media">
+                <div class="p-duo">
+                  <div class="p-phone"><img src="assets/img/produto/celular-site.webp" alt="Site da barbearia no celular com o botão Agendar horário" width="780" height="1560" loading="lazy"></div>
+                  <div class="p-phone"><img src="assets/img/produto/celular-agendar.webp" alt="Cliente escolhendo dia e horário livre pelo celular" width="780" height="1560" loading="lazy"></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="p-chapter" id="equipe" data-chapter="1">
+              <span class="p-chapter-tag"><b>02/03</b>Para a equipe</span>
+              <h3>A agenda de todo mundo, no celular de cada um</h3>
+              <ul class="p-checks">
+                <li><span><strong>Agenda do dia por barbeiro,</strong> com encaixe, bloqueio de horário e marcação de falta.</span></li>
+                <li><span><strong>Cada barbeiro entra com o próprio acesso</strong> e vê os próprios atendimentos e números.</span></li>
+                <li><span><strong>Lembrete pronto no WhatsApp</strong> com um toque, já com dia, hora e serviço.</span></li>
+                <li><span><strong>Mudou num aparelho, aparece em todos</strong> na hora. Sem atualizar a página.</span></li>
+              </ul>
+              <div class="p-chapter-media">
+                <div class="p-browser">
+                  <div class="p-browser-bar" aria-hidden="true"><span></span><span></span><span></span><em>agenda</em></div>
+                  <img src="assets/img/produto/agenda.webp" alt="Agenda com os atendimentos de três barbeiros e a linha do horário atual" width="1440" height="860" loading="lazy">
+                </div>
+              </div>
+            </article>
+
+            <article class="p-chapter" id="dono" data-chapter="2">
+              <span class="p-chapter-tag"><b>03/03</b>Para o dono</span>
+              <h3>O mês fechado sem planilha</h3>
+              <ul class="p-checks">
+                <li><span><strong>Faturamento e ticket médio</strong> por período, comparados com o período anterior.</span></li>
+                <li><span><strong>Comissão de cada barbeiro calculada</strong> e o líquido da casa ao lado.</span></li>
+                <li><span><strong>Clientes sumidos há 45 dias</strong> e aniversariantes do mês, prontos para chamar.</span></li>
+                <li><span><strong>Cartão fidelidade que se preenche sozinho:</strong> cada atendimento concluído vira um carimbo na conta do cliente.</span></li>
+              </ul>
+              <div class="p-chapter-media">
+                <div class="p-browser">
+                  <div class="p-browser-bar" aria-hidden="true"><span></span><span></span><span></span><em>financeiro</em></div>
+                  <img src="assets/img/produto/financeiro.webp" alt="Financeiro com faturamento, ticket médio, comissões a pagar e faturamento por dia" width="1440" height="860" loading="lazy">
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="p-section" id="planos" aria-labelledby="planos-title">
+    <!-- ============ EXPERIMENTE ============ -->
+    <section class="p-section p-try" id="experimente" aria-labelledby="try-title">
       <div class="container">
-        <div class="p-section-head">
-          <span class="eyebrow">Planos</span>
-          <h2 class="p-title p-h2" id="planos-title">Tudo incluso. Muda só o tamanho da equipe.</h2>
+        <div class="p-try-grid">
+          <div class="p-try-copy">
+            <div class="p-head" data-reveal>
+              <span class="p-eyebrow"><span class="p-num">03</span>Experimente</span>
+              <h2 class="p-h2" id="try-title">Assim fica a sua. <span class="p-dim">Digite o nome.</span></h2>
+            </div>
+
+            <form class="p-try-form" data-reveal onsubmit="return false">
+              <label class="p-field">
+                <span class="p-field-label">Nome da barbearia</span>
+                <input class="p-input" type="text" maxlength="28" autocomplete="off" spellcheck="false" placeholder="Ex.: Barbearia do Zé" value="Barbearia do Zé" data-try-name>
+              </label>
+
+              <fieldset class="p-field">
+                <legend class="p-field-label">Cor da marca</legend>
+                <div class="p-swatches" data-try-colors>
+                  <label style="--c:#f39c12"><input type="radio" name="cor" value="#f39c12" checked><span class="sr-only">Âmbar</span></label>
+                  <label style="--c:#e5484d"><input type="radio" name="cor" value="#e5484d"><span class="sr-only">Vermelho</span></label>
+                  <label style="--c:#2fb67c"><input type="radio" name="cor" value="#2fb67c"><span class="sr-only">Verde</span></label>
+                  <label style="--c:#4f7fe8"><input type="radio" name="cor" value="#4f7fe8"><span class="sr-only">Azul</span></label>
+                  <label style="--c:#a77bff"><input type="radio" name="cor" value="#a77bff"><span class="sr-only">Violeta</span></label>
+                  <label style="--c:#e9e4da"><input type="radio" name="cor" value="#e9e4da"><span class="sr-only">Gelo</span></label>
+                </div>
+              </fieldset>
+
+              <div class="p-try-link">
+                <span class="p-field-label">Seu link</span>
+                <p><i class="bi bi-link-45deg" aria-hidden="true"></i><span><span data-host>forbarber.com.br</span>/<b data-try-slug>barbearia-do-ze</b></span></p>
+              </div>
+
+              <p class="p-try-hint"><i class="bi bi-hand-index-thumb" aria-hidden="true"></i>Agora marque um horário no celular, como o seu cliente faria.</p>
+
+              <div class="p-try-cta">
+                <a class="btn btn-primary btn-lg" href="https://movcodebr.github.io/Barbearia/criar.html" data-app="criar.html" data-magnetic><i class="bi bi-scissors" aria-hidden="true"></i><span>Criar a <span data-try-label>Barbearia do Zé</span></span></a>
+                <span class="p-try-fine">14 dias grátis, sem cartão</span>
+              </div>
+            </form>
+          </div>
+
+          <div class="p-try-device" data-reveal>
+            <div class="p-mock" data-mock style="--shop:#f39c12; --shop-ink:#1a1206">
+              <div class="p-mock-screen">
+                <div class="p-mock-status" aria-hidden="true"><span>9:41</span><span><i class="bi bi-reception-4"></i><i class="bi bi-wifi"></i><i class="bi bi-battery-full"></i></span></div>
+                <div class="p-mock-bar">
+                  <span class="p-mock-logo" aria-hidden="true" data-mock-initials>BZ</span>
+                  <div class="p-mock-title"><strong data-mock-name>Barbearia do Zé</strong><span><i class="p-open" aria-hidden="true"></i>Aberto agora</span></div>
+                  <i class="bi bi-list" aria-hidden="true"></i>
+                </div>
+
+                <div class="p-mock-body" data-mock-body>
+                  <h3 class="p-mock-h">Agendar horário</h3>
+
+                  <div class="p-mock-group" role="group" aria-label="Serviço" data-mock-services></div>
+
+                  <p class="p-mock-label">Barbeiro</p>
+                  <div class="p-mock-barbers" role="group" aria-label="Barbeiro" data-mock-barbers></div>
+
+                  <p class="p-mock-label">Dia</p>
+                  <div class="p-mock-days" role="group" aria-label="Dia" data-mock-days></div>
+
+                  <p class="p-mock-label"><span>Horário</span><span class="p-mock-free" data-mock-free></span></p>
+                  <div class="p-mock-slots" role="group" aria-label="Horário" data-mock-slots></div>
+                </div>
+
+                <div class="p-mock-foot">
+                  <div class="p-mock-sum" data-mock-sum aria-live="polite"></div>
+                  <button class="p-mock-confirm" type="button" disabled data-mock-confirm>Escolha um horário</button>
+                </div>
+
+                <div class="p-mock-done" hidden data-mock-done role="status" aria-live="polite">
+                  <div class="p-mock-check" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg></div>
+                  <h3>Horário marcado!</h3>
+                  <p data-mock-done-text></p>
+                  <button type="button" class="p-mock-again" data-mock-again>Marcar outro</button>
+                </div>
+              </div>
+            </div>
+            <span class="p-mock-tag" aria-hidden="true"><i class="bi bi-phone"></i>Exemplo com dados de demonstração</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DETALHES ============ -->
+    <section class="p-section p-details" aria-labelledby="detalhes-title">
+      <div class="container">
+        <div class="p-head" data-reveal>
+          <span class="p-eyebrow"><span class="p-num">04</span>Nos detalhes</span>
+          <h2 class="p-h2" id="detalhes-title">O que dava trabalho, <span class="p-dim">o sistema faz sozinho.</span></h2>
+        </div>
+
+        <div class="p-bento">
+          <article class="p-tile is-race" data-reveal>
+            <div class="p-tile-art" aria-hidden="true">
+              <div class="p-race">
+                <div class="p-race-phone is-a">
+                  <span class="p-race-who">Cliente A</span>
+                  <span class="p-race-slot">15:00</span>
+                  <span class="p-race-msg is-ok"><i class="bi bi-check-circle-fill"></i>Confirmado</span>
+                  <span class="p-race-tap"></span>
+                </div>
+                <div class="p-race-vs">mesmo<br>segundo</div>
+                <div class="p-race-phone is-b">
+                  <span class="p-race-who">Cliente B</span>
+                  <span class="p-race-slot">15:00</span>
+                  <span class="p-race-msg is-no"><i class="bi bi-arrow-repeat"></i>Que tal 15:30?</span>
+                  <span class="p-race-tap"></span>
+                </div>
+              </div>
+            </div>
+            <div class="p-tile-copy">
+              <h3>Horário duplicado não existe</h3>
+              <p>Dois clientes nunca ficam com o mesmo horário, nem se tentarem no mesmo segundo.</p>
+            </div>
+          </article>
+
+          <article class="p-tile is-wa" data-reveal>
+            <div class="p-tile-art" aria-hidden="true">
+              <div class="p-wa">
+                <div class="p-wa-head"><span class="p-wa-avatar">CS</span><span><b>Carlos Silva</b><small>online</small></span><i class="bi bi-whatsapp"></i></div>
+                <div class="p-wa-chat">
+                  <span class="p-wa-day">Hoje</span>
+                  <div class="p-wa-msg">Fala, Carlos! Lembrete do seu horário: <b>quarta, 7/10, às 15:00</b>. Corte + Barba com o Zé. Até lá! <span class="p-wa-time">09:12 <i class="bi bi-check2-all"></i></span></div>
+                  <div class="p-wa-msg is-reply">Fechou, tô lá 👊 <span class="p-wa-time">09:14</span></div>
+                </div>
+                <div class="p-wa-send"><span>Mensagem</span><i class="bi bi-send-fill"></i></div>
+              </div>
+            </div>
+            <div class="p-tile-copy">
+              <h3>Lembrete com um toque</h3>
+              <p>A mensagem do WhatsApp já sai pronta, com dia, hora e serviço.</p>
+            </div>
+          </article>
+
+          <article class="p-tile is-loyal" data-reveal>
+            <div class="p-tile-art" aria-hidden="true">
+              <div class="p-loyal">
+                <div class="p-loyal-head"><span>Cartão fidelidade</span><b>7/10</b></div>
+                <div class="p-stamps"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="is-gift"></i></div>
+              </div>
+            </div>
+            <div class="p-tile-copy">
+              <h3>Fidelidade que se preenche sozinha</h3>
+              <p>Cada atendimento concluído vira um carimbo na conta do cliente.</p>
+            </div>
+          </article>
+
+          <article class="p-tile is-sync" data-reveal>
+            <div class="p-tile-art" aria-hidden="true">
+              <div class="p-sync">
+                <div class="p-sync-dev is-lap">
+                  <small>Painel</small>
+                  <span class="p-sync-row"><b>14:00</b>Carlos · Corte</span>
+                  <span class="p-sync-row is-new"><b>14:30</b>Encaixe · Barba</span>
+                  <span class="p-sync-row"><b>15:00</b>Samuel · Corte</span>
+                </div>
+                <div class="p-sync-wire"><span></span></div>
+                <div class="p-sync-dev is-phone">
+                  <small>Zé</small>
+                  <span class="p-sync-row"><b>14:00</b></span>
+                  <span class="p-sync-row is-new"><b>14:30</b></span>
+                  <span class="p-sync-row"><b>15:00</b></span>
+                </div>
+              </div>
+            </div>
+            <div class="p-tile-copy">
+              <h3>Mudou aqui, aparece lá</h3>
+              <p>Um encaixe feito no celular de um barbeiro aparece no painel e no celular dos outros, sem atualizar a página.</p>
+            </div>
+          </article>
+
+          <article class="p-tile is-back" data-reveal>
+            <div class="p-tile-art" aria-hidden="true">
+              <ul class="p-gone">
+                <li><span class="p-gone-av" style="--h:212">BT</span><span><b>Breno Tavares</b><small>Última visita há 52 dias</small></span><em><i class="bi bi-whatsapp"></i>Chamar</em></li>
+                <li><span class="p-gone-av" style="--h:12">HP</span><span><b>Hugo Pacheco</b><small>Última visita há 47 dias</small></span><em><i class="bi bi-whatsapp"></i>Chamar</em></li>
+                <li><span class="p-gone-av" style="--h:150">WS</span><span><b>Wagner Santana</b><small>Faz aniversário dia 14</small></span><em><i class="bi bi-cake2"></i>Parabéns</em></li>
+              </ul>
+            </div>
+            <div class="p-tile-copy">
+              <h3>Quem sumiu, quem faz aniversário</h3>
+              <p>Clientes sem aparecer há 45 dias e aniversariantes do mês, prontos para chamar.</p>
+            </div>
+          </article>
+
+          <article class="p-tile is-app" data-reveal>
+            <div class="p-tile-art" aria-hidden="true">
+              <div class="p-home">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span class="p-home-app" data-home-app><b data-mock-initials>BZ</b></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="p-tile-copy">
+              <h3>O app da sua barbearia</h3>
+              <p>O cliente instala direto do link, com o seu nome e o seu logo. Sem loja de aplicativos.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PLANOS ============ -->
+    <section class="p-section p-plans" id="planos" aria-labelledby="planos-title">
+      <div class="container">
+        <div class="p-head is-center" data-reveal>
+          <span class="p-eyebrow"><span class="p-num">05</span>Planos</span>
+          <h2 class="p-h2" id="planos-title">Tudo incluso. <span class="p-dim">Muda só o tamanho da equipe.</span></h2>
         </div>
         <div class="plans" id="plans"></div>
+
+        <div class="p-included" data-reveal>
+          <span class="p-field-label">Em todos os planos</span>
+          <ul>
+            <li><i class="bi bi-calendar2-check" aria-hidden="true"></i>Agendamento online</li>
+            <li><i class="bi bi-phone" aria-hidden="true"></i>Site e app com o seu nome</li>
+            <li><i class="bi bi-people" aria-hidden="true"></i>Agenda da equipe</li>
+            <li><i class="bi bi-whatsapp" aria-hidden="true"></i>Lembrete no WhatsApp</li>
+            <li><i class="bi bi-graph-up-arrow" aria-hidden="true"></i>Financeiro e comissões</li>
+            <li><i class="bi bi-award" aria-hidden="true"></i>Cartão fidelidade</li>
+            <li><i class="bi bi-cake2" aria-hidden="true"></i>Sumidos e aniversariantes</li>
+          </ul>
+        </div>
+
         <div class="p-plans-note">
-          <span><i class="bi bi-gift"></i>14 dias grátis em qualquer plano, sem cartão</span>
-          <span><i class="bi bi-x-circle"></i>Sem fidelidade: cancele quando quiser</span>
-          <span><i class="bi bi-whatsapp"></i>Suporte pelo WhatsApp</span>
+          <span><i class="bi bi-gift" aria-hidden="true"></i>14 dias grátis em qualquer plano, sem cartão</span>
+          <span><i class="bi bi-x-circle" aria-hidden="true"></i>Sem fidelidade: cancele quando quiser</span>
+          <span><i class="bi bi-whatsapp" aria-hidden="true"></i>Suporte pelo WhatsApp</span>
         </div>
       </div>
     </section>
 
-    <section class="p-section" id="perguntas" aria-labelledby="perguntas-title">
-      <div class="container">
-        <div class="p-section-head">
-          <span class="eyebrow">Perguntas</span>
-          <h2 class="p-title p-h2" id="perguntas-title">Antes de criar</h2>
+    <!-- ============ PERGUNTAS ============ -->
+    <section class="p-section p-faq-wrap" id="perguntas" aria-labelledby="perguntas-title">
+      <div class="container p-faq-grid">
+        <div class="p-head" data-reveal>
+          <span class="p-eyebrow"><span class="p-num">06</span>Perguntas</span>
+          <h2 class="p-h2" id="perguntas-title">Antes de criar</h2>
+          <p class="p-faq-aside">Ficou alguma dúvida? <a data-sales target="_blank" rel="noopener">Chama a gente no WhatsApp <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></p>
         </div>
-        <div class="p-faq">
-          <details>
+        <div class="p-faq" data-reveal>
+          <details name="faq">
             <summary>Meus clientes precisam baixar alguma coisa?</summary>
-            <p>Não. Eles abrem o link da barbearia e agendam. Quem quiser instala o app pelo próprio navegador, com o nome e o logo da sua barbearia na tela inicial.</p>
+            <div class="p-faq-body"><p>Não. Eles abrem o link da barbearia e agendam. Quem quiser instala o app pelo próprio navegador, com o nome e o logo da sua barbearia na tela inicial.</p></div>
           </details>
-          <details>
+          <details name="faq">
             <summary>O ForBarber cobra dos meus clientes?</summary>
-            <p>Não. O cliente paga você na barbearia, como sempre. No painel você só registra a forma de pagamento (Pix, cartão ou dinheiro) para o financeiro e as comissões.</p>
+            <div class="p-faq-body"><p>Não. O cliente paga você na barbearia, como sempre. No painel você só registra a forma de pagamento (Pix, cartão ou dinheiro) para o financeiro e as comissões.</p></div>
           </details>
-          <details>
+          <details name="faq">
             <summary>Já tenho clientes. Preciso cadastrar tudo de novo?</summary>
-            <p>Você cadastra pelo painel aos poucos, conforme eles aparecem. Quem já foi atendido e cria a conta no site com o mesmo telefone ou e-mail encontra o próprio histórico.</p>
+            <div class="p-faq-body"><p>Você cadastra pelo painel aos poucos, conforme eles aparecem. Quem já foi atendido e cria a conta no site com o mesmo telefone ou e-mail encontra o próprio histórico.</p></div>
           </details>
-          <details>
+          <details name="faq">
             <summary>O que acontece quando o teste acaba?</summary>
-            <p>Você escolhe um plano e segue normalmente. Se não escolher, o agendamento online fica pausado, mas a agenda, os clientes e o financeiro continuam guardados para quando voltar.</p>
+            <div class="p-faq-body"><p>Você escolhe um plano e segue normalmente. Se não escolher, o agendamento online fica pausado, mas a agenda, os clientes e o financeiro continuam guardados para quando voltar.</p></div>
           </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHAMADA FINAL ============ -->
+    <section class="p-final" aria-labelledby="final-title">
+      <div class="p-final-pole" aria-hidden="true"></div>
+      <div class="container p-final-inner">
+        <h2 class="p-final-title" id="final-title" data-reveal>Seu link na bio <span>ainda hoje.</span></h2>
+        <p data-reveal>Crie a barbearia em 5 minutos e teste 14 dias grátis. Sem cartão, sem fidelidade.</p>
+        <div class="p-ctas" data-reveal>
+          <a class="btn btn-light btn-lg" href="https://movcodebr.github.io/Barbearia/criar.html" data-app="criar.html" data-magnetic><i class="bi bi-scissors" aria-hidden="true"></i>Criar minha barbearia</a>
+          <a class="btn btn-outline-light btn-lg" data-sales target="_blank" rel="noopener"><i class="bi bi-whatsapp" aria-hidden="true"></i>Falar no WhatsApp</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="p-footer">
-    <div class="container p-footer-inner">
-      <a class="p-brand" href="./"><span class="p-brand-mark" aria-hidden="true"></span><span class="p-brand-name"><span>For</span>Barber</span></a>
-      <nav aria-label="Rodapé">
-        <a href="https://movcodebr.github.io/Barbearia/criar.html" data-app="criar.html">Criar barbearia</a>
-        <a href="https://movcodebr.github.io/Barbearia/entrar.html" data-app="entrar.html">Entrar</a>
-        <a href="https://movcodebr.github.io/Barbearia/app/" data-app="app/">Demonstração</a>
-        <a data-sales target="_blank" rel="noopener">WhatsApp</a>
-      </nav>
-      <span>Um produto <a href="https://movcode.com.br" target="_blank" rel="noopener">MovCode</a></span>
+    <div class="container">
+      <div class="p-footer-top">
+        <div class="p-footer-brand">
+          <a class="p-brand" href="./"><span class="p-brand-mark" aria-hidden="true"></span><span class="p-brand-name"><span>For</span>Barber</span></a>
+          <p>Seu cliente marca sozinho. Você só corta.</p>
+        </div>
+        <nav class="p-footer-nav" aria-label="Rodapé">
+          <div>
+            <span>Produto</span>
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#recursos">Recursos</a>
+            <a href="#planos">Planos</a>
+          </div>
+          <div>
+            <span>Conta</span>
+            <a href="https://movcodebr.github.io/Barbearia/criar.html" data-app="criar.html">Criar barbearia</a>
+            <a href="https://movcodebr.github.io/Barbearia/entrar.html" data-app="entrar.html">Entrar</a>
+            <a href="https://movcodebr.github.io/Barbearia/app/" data-app="app/">Demonstração</a>
+          </div>
+          <div>
+            <span>Contato</span>
+            <a data-sales target="_blank" rel="noopener">WhatsApp</a>
+            <a href="#perguntas">Perguntas</a>
+          </div>
+        </nav>
+      </div>
+      <div class="p-footer-bottom">
+        <span>© <span data-year>2026</span> ForBarber</span>
+        <span>Um produto <a href="https://movcode.com.br" target="_blank" rel="noopener">MovCode</a></span>
+      </div>
     </div>
+    <div class="p-wordmark" aria-hidden="true">ForBarber</div>
   </footer>
 
   <script src="assets/js/config.js"></script>
