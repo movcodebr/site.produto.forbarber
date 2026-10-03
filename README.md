@@ -2,7 +2,7 @@
 
 Página de vendas do ForBarber (sistema para barbearias). Site estático: abra `index.html` ou publique a pasta no Vercel, Netlify ou GitHub Pages.
 
-O sistema (painel, agendamento, "Criar barbearia" e "Entrar") fica em outro repositório: [movcodebr/Barbearia](https://github.com/movcodebr/Barbearia).
+O sistema (painel, agendamento, "Criar barbearia" e "Entrar") fica em outro repositório: [okaiquemota/app.ios.android.forbarber](https://github.com/okaiquemota/app.ios.android.forbarber).
 
 ## Configurar
 
