@@ -220,7 +220,8 @@
 /* ---------- Topo ---------- */
 .p-hero {
   position: relative;
-  padding-top: calc(var(--header-h) + clamp(3.5rem, 9vw, 7rem));
+  overflow-x: clip;
+  padding-top: calc(var(--header-h) + min(clamp(3.5rem, 9vw, 7rem), 9vh));
   background: radial-gradient(ellipse 80% 60% at 50% 0%, #1a2540 0%, var(--navy) 70%);
 }
 .p-hero-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
@@ -228,7 +229,7 @@
 .p-display {
   max-width: 15ch;
   font-family: var(--serif);
-  font-size: clamp(3rem, 1.6rem + 5.6vw, 6.4rem);
+  font-size: min(clamp(3rem, 1.6rem + 5.6vw, 6.4rem), max(2.6rem, 11vh));
   font-weight: 500;
   line-height: 1.02;
   letter-spacing: -0.01em;
@@ -241,11 +242,20 @@
 .p-fine { margin-top: 1.4rem; font-size: 0.84rem; letter-spacing: 0.04em; color: var(--text-3); }
 .p-fine span { margin-inline: 0.5rem; }
 @media (max-width: 479px) { .p-hero .p-ctas .btn { width: 100%; } }
+@media (min-width: 700px) and (max-height: 860px) {
+  .p-body { --section-y: clamp(4rem, 8vw, 6.5rem); }
+  .p-hero .p-label { margin-bottom: 1.2rem; }
+  .p-hero-lead { max-width: 62ch; margin-top: 1.2rem; }
+  .p-hero .p-ctas { margin-top: 1.8rem; }
+  .p-hero .p-fine { margin-top: 1rem; }
+  .p-hero .btn-lg { min-height: 50px; padding-block: 0.8rem; }
+}
+@media (min-width: 1100px) and (max-height: 800px) { .p-body { --header-h: 72px; } }
 
 .p-showcase {
   position: relative;
   max-width: 1040px;
-  margin: clamp(3.5rem, 7vw, 5.5rem) auto calc(-1 * var(--overlap));
+  margin: min(clamp(3.5rem, 7vw, 5.5rem), 7vh) auto calc(-1 * var(--overlap));
 }
 .p-browser {
   overflow: hidden;
@@ -265,6 +275,7 @@
 }
 .p-phone img { width: 100%; border-radius: 22px; }
 .p-showcase-phone { position: absolute; right: -3%; bottom: -9%; width: 22%; }
+@media (max-width: 1139px) { .p-showcase-phone { right: -1%; } }
 @media (max-width: 699px) {
   .p-showcase-phone { width: 32%; right: -1%; bottom: -14%; }
   .p-phone { padding: 4px; border-radius: 18px; }
@@ -280,7 +291,7 @@
 .p-pillars p { max-width: 34ch; color: var(--text-2); }
 @media (min-width: 860px) {
   .p-pillars-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
-  .p-pillars-list li { padding: 0.5rem 2.5rem; }
+  .p-pillars-list li { padding: 0.5rem clamp(1.25rem, 2.5vw, 2.5rem); }
   .p-pillars-list li + li { border-left: 1px solid var(--line); }
 }
 
@@ -322,7 +333,7 @@
 }
 .p-steps h3 { font-family: var(--serif); font-size: 1.7rem; font-weight: 600; line-height: 1.15; }
 .p-steps p { max-width: 32ch; color: var(--text-2); }
-.p-steps p b { color: var(--text); font-weight: 600; overflow-wrap: anywhere; }
+.p-steps p b { color: var(--text); font-weight: 600; overflow-wrap: break-word; }
 @media (min-width: 860px) {
   .p-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; }
   .p-steps li { position: relative; }
