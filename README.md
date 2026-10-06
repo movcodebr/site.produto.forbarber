@@ -14,10 +14,8 @@ Edite só `assets/js/config.js`:
 
 ## Identidade
 
-Azul-marinho, vermelho do poste de barbeiro e fonte Archivo. Nada de MovCode nem das barbearias clientes.
+Barbearia clássica de alto padrão: azul-marinho, marfim e o vermelho do poste de barbeiro num tom fechado (bordô). Nada de MovCode nem das barbearias clientes.
 
-A Archivo é uma fonte variável e fica no próprio site (`assets/vendor/archivo/`, licença OFL): títulos com a largura no máximo (125%), etiquetas estreitas (62–75%). A animação do título do topo é a própria largura da letra.
+Títulos em Cormorant Garamond, texto e etiquetas em Archivo. As duas fontes ficam no próprio site (`assets/vendor/cormorant/` e `assets/vendor/archivo/`, licença OFL). Pouco movimento: só um fade curto ao rolar.
 
 As telas em `assets/img/produto/` são capturas do sistema rodando a demonstração.
-
-O celular da seção "Experimente" é só uma simulação em `assets/js/site.js`: serviços, preços, barbeiros e horários ocupados são dados de exemplo, nada é enviado ao sistema.
