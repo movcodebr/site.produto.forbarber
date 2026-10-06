@@ -9,7 +9,8 @@
   const $$ = (s) => Array.from(document.querySelectorAll(s));
 
   $$('[data-app]').forEach((a) => { a.href = app + a.dataset.app; });
-  $$('[data-host]').forEach((el) => { el.textContent = app.replace(/^https?:\/\//, '').replace(/\/$/, ''); });
+  // <wbr> depois de pontos e barras: o endereço longo quebra em lugares que fazem sentido
+  $$('[data-host]').forEach((el) => { el.innerHTML = esc(app.replace(/^https?:\/\//, '').replace(/\/$/, '')).replace(/([./])/g, '$1<wbr>'); });
   $$('[data-sales]').forEach((a) => {
     a.href = `https://wa.me/${CFG.salesWhatsapp}?text=${encodeURIComponent('Olá! Quero saber mais sobre o ForBarber.')}`;
   });
@@ -63,6 +64,8 @@
   $$('[data-reveal]').forEach((el) => {
     const sibs = Array.from(el.parentElement.children).filter((c) => c.hasAttribute('data-reveal'));
     el.style.transitionDelay = `${Math.min(sibs.indexOf(el), 4) * 80}ms`;
-    io.observe(el);
+    // O que já está na primeira tela aparece direto, mesmo encostado na borda de baixo
+    if (el.getBoundingClientRect().top < innerHeight) el.classList.add('is-in');
+    else io.observe(el);
   });
 })();

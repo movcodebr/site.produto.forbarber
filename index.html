@@ -28,7 +28,7 @@
       <a class="p-brand" href="./" aria-label="ForBarber, início"><span class="p-brand-mark" aria-hidden="true"></span><span class="p-brand-name">ForBarber</span></a>
       <nav class="p-nav" aria-label="Menu">
         <a href="#recursos">Recursos</a>
-        <a href="#como-funciona">Como funciona</a>
+        <a href="#funcionalidades">Funcionalidades</a>
         <a href="#planos">Planos</a>
         <a href="#perguntas">Perguntas</a>
       </nav>
@@ -42,6 +42,7 @@
     </div>
     <nav class="p-sheet" id="menu-mobile" aria-label="Menu" hidden data-menu>
       <a href="#recursos">Recursos</a>
+      <a href="#funcionalidades">Funcionalidades</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#planos">Planos</a>
       <a href="#perguntas">Perguntas</a>
@@ -165,6 +166,115 @@
       </div>
     </section>
 
+    <!-- Destaques: receita e faltas -->
+    <section class="p-section p-extras" id="receita" aria-labelledby="receita-title">
+      <div class="container">
+        <header class="p-head is-center" data-reveal>
+          <p class="p-label">Além da agenda</p>
+          <h2 class="p-h2" id="receita-title">Para faturar mais e perder menos horário</h2>
+        </header>
+        <div class="p-extras-grid">
+          <article class="p-extra" data-reveal>
+            <i class="bi bi-award" aria-hidden="true"></i>
+            <h3>Clube de assinatura</h3>
+            <p>Crie planos mensais com visitas por mês (ou ilimitadas), serviços inclusos e desconto nos demais. No agendamento, o que o plano cobre sai de graça. O financeiro soma as mensalidades e a comissão considera o serviço coberto.</p>
+          </article>
+          <article class="p-extra" data-reveal>
+            <i class="bi bi-qr-code" aria-hidden="true"></i>
+            <h3>Sinal por Pix</h3>
+            <p>Peça um sinal fixo ou em porcentagem, para todos ou só para clientes novos e quem já faltou. O app gera o QR Code e o copia e cola da sua chave. Você confere o extrato, marca como recebido e o valor é descontado no fim do atendimento.</p>
+          </article>
+          <article class="p-extra" data-reveal>
+            <i class="bi bi-hourglass-split" aria-hidden="true"></i>
+            <h3>Lista de espera</h3>
+            <p>Dia cheio? O cliente entra na lista pelo próprio agendamento. Quando abre uma vaga, o painel mostra quem chamar e avisa pelo WhatsApp com um toque. Ao agendar, ele sai da lista sozinho.</p>
+          </article>
+          <article class="p-extra" data-reveal>
+            <i class="bi bi-bag" aria-hidden="true"></i>
+            <h3>Produtos e comanda</h3>
+            <p>Venda no balcão ou junto do atendimento, com serviços e produtos no mesmo pagamento. Cada venda baixa o estoque, o painel avisa quando um produto chega no mínimo e o barbeiro ganha comissão sobre o que vende.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Funcionalidades: tudo o que vem no sistema -->
+    <section class="p-section p-catalog" id="funcionalidades" aria-labelledby="func-title">
+      <div class="container">
+        <header class="p-head is-center" data-reveal>
+          <p class="p-label">Funcionalidades</p>
+          <h2 class="p-h2" id="func-title">Tudo o que vem no ForBarber</h2>
+          <p class="p-head-sub">Em todos os planos, sem módulo extra.</p>
+        </header>
+        <div class="p-catalog-grid">
+          <section class="p-group" data-reveal aria-labelledby="g-agenda">
+            <h3 id="g-agenda">Agenda</h3>
+            <ul>
+              <li>Agendamento online 24 horas pelo link da barbearia</li>
+              <li>Cliente escolhe o serviço e o barbeiro, ou o primeiro disponível</li>
+              <li>Dias de atendimento e cor de cada barbeiro na agenda</li>
+              <li>Encaixe, bloqueio de horário e marcação de falta</li>
+              <li>Antecedência mínima, intervalo entre horários e quantos dias a agenda fica aberta</li>
+              <li>Prazo para o cliente cancelar e remarcar sozinho</li>
+            </ul>
+          </section>
+          <section class="p-group" data-reveal aria-labelledby="g-clientes">
+            <h3 id="g-clientes">Clientes</h3>
+            <ul>
+              <li>Conta do cliente com próximos horários e histórico</li>
+              <li>Avaliação de cada atendimento, com a nota no site da barbearia</li>
+              <li>Cartão fidelidade: um corte grátis a cada 5, 8, 10 ou 12 atendimentos</li>
+              <li>Listas prontas: frequentes, sumidos há 45 dias, aniversariantes e novos</li>
+              <li>Anotações da equipe que o cliente não vê</li>
+              <li>Mensagens do formulário de contato direto no painel</li>
+            </ul>
+          </section>
+          <section class="p-group" data-reveal aria-labelledby="g-equipe">
+            <h3 id="g-equipe">Equipe</h3>
+            <ul>
+              <li>Acesso próprio para cada barbeiro, com os próprios horários e números</li>
+              <li>Comissão por barbeiro, em porcentagem</li>
+              <li>Aviso de novo agendamento, remarcação e cancelamento</li>
+              <li>Lembrete pronto no WhatsApp com um toque</li>
+            </ul>
+          </section>
+          <section class="p-group" data-reveal aria-labelledby="g-financeiro">
+            <h3 id="g-financeiro">Financeiro e vendas</h3>
+            <ul>
+              <li>Faturamento e ticket médio, comparados com o período anterior</li>
+              <li>Comissões a pagar e o líquido da casa</li>
+              <li>Serviços mais pedidos no mês, no painel inicial</li>
+              <li>Formas de pagamento: Pix, cartão e dinheiro</li>
+              <li>Produtos com custo, estoque e aviso de estoque mínimo</li>
+              <li>Comanda com serviços e produtos no mesmo pagamento</li>
+              <li>Agendamentos, clientes e financeiro em planilha (CSV)</li>
+            </ul>
+          </section>
+          <section class="p-group" data-reveal aria-labelledby="g-receita">
+            <h3 id="g-receita">Receita e faltas</h3>
+            <ul>
+              <li>Clube de assinatura com visitas por mês, serviços inclusos e desconto</li>
+              <li>Cobrança da mensalidade pelo WhatsApp para quem venceu</li>
+              <li>Sinal por Pix com QR Code, para todos ou só para quem já faltou</li>
+              <li>Lista de espera para os dias lotados</li>
+            </ul>
+          </section>
+          <section class="p-group" data-reveal aria-labelledby="g-marca">
+            <h3 id="g-marca">A sua marca</h3>
+            <ul>
+              <li>Site com nome, logo, cor, foto de capa, slogan e “sobre”</li>
+              <li>Endereço, telefone, WhatsApp e Instagram da barbearia</li>
+              <li>Estilo dos títulos à sua escolha</li>
+              <li>App instalável pela tela inicial do celular, sem loja</li>
+              <li>Modo escuro automático, seguindo o celular do cliente</li>
+              <li>Endereço próprio para colocar na bio</li>
+            </ul>
+          </section>
+        </div>
+        <p class="p-trust" data-reveal><i class="bi bi-shield-check" aria-hidden="true"></i>Os dados de cada barbearia ficam separados. O cliente só vê o próprio cadastro e os próprios horários, e dois agendamentos no mesmo horário são barrados pelo próprio banco de dados.</p>
+      </div>
+    </section>
+
     <!-- Como funciona -->
     <section class="p-section p-steps-wrap" id="como-funciona" aria-labelledby="como-title">
       <div class="container">
@@ -201,7 +311,7 @@
           <p class="p-head-sub">14 dias grátis em qualquer plano, sem cartão. Sem fidelidade: cancele quando quiser.</p>
         </header>
         <div class="plans" id="plans"></div>
-        <p class="p-included" data-reveal>Em todos os planos: agendamento online · site e app com o seu nome · agenda da equipe · lembrete no WhatsApp · financeiro e comissões · cartão fidelidade · suporte pelo WhatsApp</p>
+        <p class="p-included" data-reveal>Todas as funcionalidades em todos os planos: agenda online · site e app com o seu nome · clube de assinatura · sinal por Pix · lista de espera · produtos e comanda · financeiro e comissões · cartão fidelidade · suporte pelo WhatsApp</p>
       </div>
     </section>
 
@@ -222,12 +332,36 @@
             <p>Não. O cliente paga você na barbearia, como sempre. No painel você só registra a forma de pagamento (Pix, cartão ou dinheiro) para o financeiro e as comissões.</p>
           </details>
           <details name="faq">
+            <summary>Funciona no celular e no computador?</summary>
+            <p>Funciona no navegador de qualquer celular, tablet ou computador. O cliente e a equipe podem instalar o app pela tela inicial do celular, sem passar por loja.</p>
+          </details>
+          <details name="faq">
+            <summary>Tem clube de assinatura?</summary>
+            <p>Tem. Você cria planos mensais com número de visitas por mês (ou ilimitadas), serviços inclusos e desconto nos demais. No agendamento, o que o plano cobre sai de graça; quando acabam as visitas do mês, o cliente paga normalmente. A mensalidade é registrada no painel (Pix, cartão ou dinheiro) e entra no financeiro.</p>
+          </details>
+          <details name="faq">
+            <summary>Como funciona o sinal por Pix?</summary>
+            <p>Você define um valor fixo ou uma porcentagem, para todos ou só para clientes novos e para quem já faltou. Ao agendar, o cliente vê o QR Code e o copia e cola da sua chave Pix. Você confere o extrato e marca como recebido. O valor é descontado no fim do atendimento e acompanha o horário se o cliente remarcar.</p>
+          </details>
+          <details name="faq">
+            <summary>E quando a agenda do dia está cheia?</summary>
+            <p>O cliente entra na lista de espera pelo próprio agendamento. Quando abre uma vaga, o painel mostra quem pode ser chamado e você avisa pelo WhatsApp com um toque.</p>
+          </details>
+          <details name="faq">
+            <summary>Dá para vender produtos e controlar o estoque?</summary>
+            <p>Dá. Você cadastra os produtos com preço, custo e estoque mínimo e vende no balcão ou junto do atendimento, na mesma comanda. Cada venda baixa o estoque e entra no faturamento e na comissão do barbeiro.</p>
+          </details>
+          <details name="faq">
             <summary>Já tenho clientes. Preciso cadastrar tudo de novo?</summary>
             <p>Você cadastra pelo painel aos poucos, conforme eles aparecem. Quem já foi atendido e cria a conta no site com o mesmo telefone ou e-mail encontra o próprio histórico.</p>
           </details>
           <details name="faq">
             <summary>O que acontece quando o teste acaba?</summary>
             <p>Você escolhe um plano e segue normalmente. Se não escolher, o agendamento online fica pausado, mas a agenda, os clientes e o financeiro continuam guardados para quando voltar.</p>
+          </details>
+          <details name="faq">
+            <summary>Consigo levar meus dados para fora do sistema?</summary>
+            <p>Consegue. Agendamentos, clientes e financeiro saem em planilha (CSV) direto do painel.</p>
           </details>
         </div>
         <p class="p-faq-more" data-reveal>Ficou alguma dúvida? <a data-sales target="_blank" rel="noopener">Fale com a gente no WhatsApp</a></p>
